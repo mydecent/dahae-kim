@@ -1,0 +1,32 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+      "target": "es5",
+      "moduleResolution": "node",
+      "forceConsistentCasingInFileNames": true,
+      "noFallthroughCasesInSwitch": true,
+      "noImplicitReturns": true,
+      "noUnusedParameters": true,
+      "strict": true,
+      "allowSyntheticDefaultImports": true,
+      "noUncheckedIndexedAccess": true,
+      "esModuleInterop": true,
+      "noUnusedLocals": true,
+      "removeComments": false,
+      "preserveConstEnums": true,
+      "isolatedModules": true,
+      "sourceMap": true,
+      "inlineSources": true,
+      "skipLibCheck": true,
+      "downlevelIteration": true,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "lib": ["dom", "dom.iterable", "esnext"],
+      "allowJs": false,
+      "noEmit": true,
+      "module": "esnext",
+      "resolveJsonModule": true,
+      "jsx": "preserve",
+      "jsxImportSource": "@emotion/react"
+    }
+  }

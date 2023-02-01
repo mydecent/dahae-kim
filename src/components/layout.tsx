@@ -5,13 +5,13 @@
  * See: https://www.gatsbyjs.com/docs/how-to/querying-data/use-static-query/
  */
 
-import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { css, Global } from "@emotion/react";
+import { graphql, useStaticQuery } from "gatsby";
 
-import Header from "./header"
-import "./layout.css"
+import { PropsWithChildren } from "react";
+import Header from "./header";
 
-const Layout = ({ children }) => {
+const Layout = ({ children }: PropsWithChildren) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -20,10 +20,11 @@ const Layout = ({ children }) => {
         }
       }
     }
-  `)
+  `);
 
   return (
     <>
+      <Global styles={globalStyles} />
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <div
         style={{
@@ -45,7 +46,19 @@ const Layout = ({ children }) => {
         </footer>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
+
+const globalStyles = css`
+  @font-face {
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  body {
+    font-family: Montserrat, sans-serif;
+  }
+`;
