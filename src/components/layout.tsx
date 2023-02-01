@@ -6,59 +6,67 @@
  */
 
 import { css, Global } from "@emotion/react";
-import { graphql, useStaticQuery } from "gatsby";
-
-import { PropsWithChildren } from "react";
+import styled from "@emotion/styled";
+import { ReactNode } from "react";
+import { colors } from "../styles/colors";
 import Header from "./header";
 
-const Layout = ({ children }: PropsWithChildren) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
+export type Background = "light" | "dark";
 
+interface Props {
+  children?: ReactNode;
+  background?: Background;
+}
+
+const Layout = ({ background = "light", children }: Props) => {
   return (
     <>
-      <Global styles={globalStyles} />
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: `var(--size-content)`,
-          padding: `var(--size-gutter)`,
-        }}
-      >
-        <main>{children}</main>
-        <footer
-          style={{
-            marginTop: `var(--space-5)`,
-            fontSize: `var(--font-sm)`,
-          }}
-        >
-          © {new Date().getFullYear()} &middot; Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </footer>
-      </div>
+      <Global
+        styles={css`
+          @font-face {
+            font-family: "Montserrat";
+            font-style: normal;
+            font-weight: 400;
+          }
+
+          @font-face {
+            font-family: "Montserrat";
+            font-style: normal;
+            font-weight: 500;
+          }
+
+          @font-face {
+            font-family: "Unbounded";
+            font-style: normal;
+            font-weight: 500;
+          }
+
+          * {
+            box-sizing: border-box;
+          }
+
+          body {
+            min-height: 100%;
+            font-family: Montserrat, sans-serif;
+            font-size: 14px;
+            background-color: ${colors[background]};
+            color: ${colors[background === "dark" ? "light" : "dark"]};
+          }
+        `}
+      />
+      <Header background={background} />
+      <Main>{children}</Main>
     </>
   );
 };
 
 export default Layout;
 
-const globalStyles = css`
-  @font-face {
-    font-family: "Montserrat";
-    font-style: normal;
-    font-weight: 400;
-  }
-
-  body {
-    font-family: Montserrat, sans-serif;
-  }
+const Main = styled.div`
+  position: relative;
+  max-width: 90%;
+  margin-right: auto;
+  margin-left: 10%;
+  padding-right: 5%;
+  padding-left: 5%;
 `;

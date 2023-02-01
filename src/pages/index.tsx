@@ -1,10 +1,11 @@
+import styled from "@emotion/styled";
 import { Link } from "gatsby";
-import * as React from "react";
 
 import Layout from "../components/layout";
 import Seo from "../components/seo";
+import { colors } from "../styles/colors";
 
-const samplePageLinks = [
+const pageLinks = [
   { text: "about", url: "/about" },
   { text: "work", url: "/work" },
   { text: "contact", url: "/contact" },
@@ -12,12 +13,13 @@ const samplePageLinks = [
 
 const IndexPage = () => (
   <Layout>
-    {samplePageLinks.map((link, i) => (
-      <React.Fragment key={link.url}>
-        <Link to={link.url}>{link.text}</Link>
-        {i !== samplePageLinks.length - 1 && <> · </>}
-      </React.Fragment>
-    ))}
+    <SectionRight>
+      {pageLinks.map((link) => (
+        <PageLink key={link.url} to={link.url}>
+          {link.text}
+        </PageLink>
+      ))}
+    </SectionRight>
   </Layout>
 );
 
@@ -29,3 +31,29 @@ const IndexPage = () => (
 export const Head = () => <Seo title="Home" />;
 
 export default IndexPage;
+
+const SectionRight = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 65%;
+  height: 90vh;
+  padding-top: 5vh;
+`;
+
+const PageLink = styled(Link)`
+  color: ${colors.dark};
+  font-family: Unbounded, sans-serif;
+  font-size: 12vw;
+  line-height: 0.95em;
+  font-weight: 300;
+  text-align: left;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &:hover {
+    transform: translateX(5%);
+    font-style: italic;
+    transition: all 0.5s;
+  }
+`;
