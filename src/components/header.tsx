@@ -27,9 +27,11 @@ const Header = ({ background = "light" }: Props) => {
 
   return (
     <Navbar background={background}>
-      <Title to="/">{data.site.siteMetadata?.title}</Title>
+      <Title to="/">{data.site.siteMetadata.title}</Title>
       <Line background={background} />
-      <Footer>© {new Date().getFullYear()}</Footer>
+      <Footer>
+        <CopyrightText>© {new Date().getFullYear()}</CopyrightText>
+      </Footer>
     </Navbar>
   );
 };
@@ -46,7 +48,7 @@ const Navbar = styled.nav<{ background: Background }>`
   width: 10%;
   padding-top: 60px;
   padding-bottom: 60px;
-  padding-left: 10px;
+  padding-left: 30px;
   color: ${({ background }) =>
     colors[background === "dark" ? "light" : "dark"]};
 `;
@@ -80,15 +82,19 @@ const Line = styled.div<{ background: Background }>`
 `;
 
 const Footer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-right: 15px;
+  padding-left: 20px;
+  position: fixed;
+  bottom: 60px;
+`;
+
+const CopyrightText = styled.div`
   font-size: 10px;
   font-weight: 500;
   text-align: center;
   letter-spacing: 5px;
-  display: block;
-  padding-right: 15px;
-  padding-left: 20px;
   transform: rotate(-90deg);
   width: 110px;
-  position: fixed;
-  bottom: 60px;
 `;

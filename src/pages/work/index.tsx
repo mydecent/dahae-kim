@@ -1,12 +1,9 @@
-import { Link } from "gatsby";
-
 import Layout from "../../components/layout";
 import Seo from "../../components/seo";
 
 const WorkPage = () => (
-  <Layout>
+  <Layout background="dark">
     <h1>WORK</h1>
-    <Link to="/">Go back to the homepage</Link>
   </Layout>
 );
 

@@ -13,13 +13,11 @@ const pageLinks = [
 
 const IndexPage = () => (
   <Layout>
-    <SectionRight>
-      {pageLinks.map((link) => (
-        <PageLink key={link.url} to={link.url}>
-          {link.text}
-        </PageLink>
-      ))}
-    </SectionRight>
+    {pageLinks.map((link) => (
+      <PageLink key={link.url} to={link.url}>
+        {link.text}
+      </PageLink>
+    ))}
   </Layout>
 );
 
@@ -31,15 +29,6 @@ const IndexPage = () => (
 export const Head = () => <Seo title="Home" />;
 
 export default IndexPage;
-
-const SectionRight = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 65%;
-  height: 90vh;
-  padding-top: 5vh;
-`;
 
 const PageLink = styled(Link)`
   color: ${colors.dark};

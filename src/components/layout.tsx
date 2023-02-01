@@ -65,8 +65,14 @@ export default Layout;
 const Main = styled.div`
   position: relative;
   max-width: 90%;
+  width: 65%;
+  height: 90vh;
   margin-right: auto;
   margin-left: 10%;
   padding-right: 5%;
   padding-left: 5%;
+  padding-top: 5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
