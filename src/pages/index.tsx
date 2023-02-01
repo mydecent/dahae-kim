@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { Link } from "gatsby";
 
+import PageTransition from "gatsby-plugin-page-transitions";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
 import { colors } from "../styles/colors";
@@ -12,13 +13,27 @@ const pageLinks = [
 ];
 
 const IndexPage = () => (
-  <Layout>
-    {pageLinks.map((link) => (
-      <PageLink key={link.url} to={link.url}>
-        {link.text}
-      </PageLink>
-    ))}
-  </Layout>
+  <PageTransition
+    defaultStyle={{
+      transition: "left 500ms cubic-bezier(0.47, 0, 0.75, 0.72)",
+      left: "100%",
+      position: "absolute",
+      width: "100%",
+    }}
+    transitionStyles={{
+      entering: { left: "0%" },
+      entered: { left: "0%" },
+      exiting: { left: "100%" },
+    }}
+  >
+    <Layout>
+      {pageLinks.map((link) => (
+        <PageLink key={link.url} to={link.url}>
+          {link.text}
+        </PageLink>
+      ))}
+    </Layout>
+  </PageTransition>
 );
 
 /**
