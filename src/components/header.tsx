@@ -7,14 +7,16 @@
 
 import styled from "@emotion/styled";
 import { graphql, Link, useStaticQuery } from "gatsby";
+import { ReactNode } from "react";
 import { colors } from "../styles/colors";
 import { Background } from "./layout";
 
 interface Props {
   background?: Background;
+  title?: ReactNode;
 }
 
-const Header = ({ background = "light" }: Props) => {
+const Header = ({ background = "light", title }: Props) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -27,8 +29,10 @@ const Header = ({ background = "light" }: Props) => {
 
   return (
     <Navbar background={background}>
-      <Title to="/">{data.site.siteMetadata.title}</Title>
-      <Line background={background} />
+      <Flex>
+        <Title to="/">{title ?? data.site.siteMetadata.title}</Title>
+        <Line background={background} />
+      </Flex>
       <Footer>
         <CopyrightText>© {new Date().getFullYear()}</CopyrightText>
       </Footer>
@@ -39,18 +43,40 @@ const Header = ({ background = "light" }: Props) => {
 export default Header;
 
 const Navbar = styled.nav<{ background: Background }>`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 50px;
   position: fixed;
   height: 100vh;
   width: 10%;
   padding-top: 60px;
   padding-bottom: 60px;
   padding-left: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: ${({ background }) =>
     colors[background === "dark" ? "light" : "dark"]};
+
+  @media (max-width: 767px) {
+    width: 100%;
+    height: auto;
+    position: static;
+    padding-top: 30px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+`;
+
+const Flex = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+
+  @media (max-width: 767px) {
+    flex-direction: row;
+    gap: 0;
+  }
 `;
 
 const Title = styled(Link)`
@@ -70,6 +96,11 @@ const Title = styled(Link)`
   &:hover {
     text-decoration: line-through;
   }
+
+  @media (max-width: 767px) {
+    transform: rotate(0);
+    padding-right: 30px;
+  }
 `;
 
 const Line = styled.div<{ background: Background }>`
@@ -79,6 +110,16 @@ const Line = styled.div<{ background: Background }>`
   margin-bottom: 30px;
   background-color: ${({ background }) =>
     colors[background === "dark" ? "light" : "dark"]};
+
+  @media (max-width: 767px) {
+    width: 100px;
+    height: 2px;
+    margin: 0;
+  }
+
+  @media (max-width: 479px) {
+    width: 40px;
+  }
 `;
 
 const Footer = styled.div`
@@ -88,6 +129,10 @@ const Footer = styled.div`
   padding-left: 20px;
   position: fixed;
   bottom: 60px;
+
+  @media (max-width: 767px) {
+    position: static;
+  }
 `;
 
 const CopyrightText = styled.div`
@@ -97,4 +142,8 @@ const CopyrightText = styled.div`
   letter-spacing: 5px;
   transform: rotate(-90deg);
   width: 110px;
+
+  @media (max-width: 767px) {
+    transform: rotate(0);
+  }
 `;

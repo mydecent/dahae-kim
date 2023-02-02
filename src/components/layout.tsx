@@ -16,9 +16,10 @@ export type Background = "light" | "dark";
 interface Props {
   children?: ReactNode;
   background?: Background;
+  title?: ReactNode;
 }
 
-const Layout = ({ background = "light", children }: Props) => {
+const Layout = ({ background = "light", title, children }: Props) => {
   return (
     <>
       <Global
@@ -54,7 +55,7 @@ const Layout = ({ background = "light", children }: Props) => {
           }
         `}
       />
-      <Header background={background} />
+      <Header background={background} title={title} />
       <Main>{children}</Main>
     </>
   );
@@ -65,14 +66,15 @@ export default Layout;
 const Main = styled.div`
   position: relative;
   max-width: 90%;
-  width: 65%;
-  height: 90vh;
+  width: 80%;
+  height: 100%;
   margin-right: auto;
   margin-left: 10%;
   padding-right: 5%;
   padding-left: 5%;
-  padding-top: 5vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+
+  @media (max-width: 767px) {
+    margin: 0;
+    width: 100%;
+  }
 `;

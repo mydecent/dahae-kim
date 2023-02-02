@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
 import PageTransition from "gatsby-plugin-page-transitions";
 import Layout, { Background } from "../components/layout";
 import Seo from "../components/seo";
@@ -27,6 +27,7 @@ const ContactPage = () => {
         top: "100%",
         position: "absolute",
         width: "100%",
+        height: "100%",
       }}
       transitionStyles={{
         entering: { top: "0%" },
@@ -35,42 +36,43 @@ const ContactPage = () => {
       }}
     >
       <Layout background="dark">
-        <Flex>
-          Email:{" "}
-          <SocialLink
-            href={`mailto:${data.site.siteMetadata.social.email}`}
-            color="#ecc7c0"
-            data-tip
-            data-for="gmail"
-            background="dark"
-          >
-            dhkim1014@gmail.com
-          </SocialLink>
-        </Flex>
-        <Flex>
-          On the Internet:{" "}
-          <SocialLink
-            href={`https://linkedin.com/in/${data.site.siteMetadata.social.linkedin}`}
-            rel="noopener noreferrer"
-            target="_blank"
-            data-tip
-            data-for="linkedin"
-            background="dark"
-          >
-            LinkedIn
-          </SocialLink>
-          {"/"}
-          <SocialLink
-            href={`https://github.com/${data.site.siteMetadata.social.github}`}
-            rel="noopener noreferrer"
-            target="_blank"
-            data-tip
-            data-for="github"
-            background="dark"
-          >
-            Github
-          </SocialLink>
-        </Flex>
+        <Wrapper>
+          <Flex>
+            Email:{" "}
+            <SocialLink
+              to={`mailto:${data.site.siteMetadata.social.email}`}
+              color="#ecc7c0"
+              data-tip
+              data-for="gmail"
+            >
+              dhkim1014@gmail.com
+            </SocialLink>
+          </Flex>
+          <Flex>
+            On the Internet:{" "}
+            <Flex>
+              <SocialLink
+                to={`https://linkedin.com/in/${data.site.siteMetadata.social.linkedin}`}
+                rel="noopener noreferrer"
+                target="_blank"
+                data-tip
+                data-for="linkedin"
+              >
+                LinkedIn
+              </SocialLink>
+              {"/"}
+              <SocialLink
+                to={`https://github.com/${data.site.siteMetadata.social.github}`}
+                rel="noopener noreferrer"
+                target="_blank"
+                data-tip
+                data-for="github"
+              >
+                Github
+              </SocialLink>
+            </Flex>
+          </Flex>
+        </Wrapper>
       </Layout>
     </PageTransition>
   );
@@ -80,17 +82,28 @@ export const Head = () => <Seo title="Contact" />;
 
 export default ContactPage;
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+`;
+
 const Flex = styled.div`
   display: flex;
   gap: 8px;
   letter-spacing: 1.5px;
   line-height: 2;
   font-weight: 300;
+
+  @media screen and (max-width: 535px) {
+    flex-wrap: wrap;
+    gap: 0;
+  }
 `;
 
-const SocialLink = styled.a<{ background: Background }>`
-  color: ${({ background }) =>
-    colors[background === "dark" ? "light" : "dark"]};
+const SocialLink = styled(Link)`
+  color: ${colors.light};
 
   &:hover {
     font-style: italic;

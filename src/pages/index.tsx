@@ -19,6 +19,7 @@ const IndexPage = () => (
       left: "100%",
       position: "absolute",
       width: "100%",
+      height: "100%",
     }}
     transitionStyles={{
       entering: { left: "0%" },
@@ -27,11 +28,13 @@ const IndexPage = () => (
     }}
   >
     <Layout>
-      {pageLinks.map((link) => (
-        <PageLink key={link.url} to={link.url}>
-          {link.text}
-        </PageLink>
-      ))}
+      <Wrapper>
+        {pageLinks.map((link) => (
+          <PageLink key={link.url} to={link.url}>
+            {link.text}
+          </PageLink>
+        ))}
+      </Wrapper>
     </Layout>
   </PageTransition>
 );
@@ -44,6 +47,13 @@ const IndexPage = () => (
 export const Head = () => <Seo title="Home" />;
 
 export default IndexPage;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+`;
 
 const PageLink = styled(Link)`
   color: ${colors.dark};
@@ -59,5 +69,9 @@ const PageLink = styled(Link)`
     transform: translateX(5%);
     font-style: italic;
     transition: all 0.5s;
+  }
+
+  @media (max-width: 767px) {
+    line-height: 1.5em;
   }
 `;
