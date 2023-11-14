@@ -16,7 +16,7 @@ module.exports = {
     social: {
       github: `dahae-dev`,
       linkedin: `dahae-kim-ba590b31`,
-      email: `dhkim1014@gmail.com`,
+      email: `dev.dahae@gmail.com`,
     },
   },
   plugins: [

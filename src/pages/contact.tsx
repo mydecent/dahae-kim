@@ -45,7 +45,7 @@ const ContactPage = () => {
               data-tip
               data-for="gmail"
             >
-              dhkim1014@gmail.com
+              dev.dahae@gmail.com
             </SocialLink>
           </Flex>
           <Flex>
