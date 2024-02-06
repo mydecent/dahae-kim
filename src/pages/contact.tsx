@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import PageTransition from "gatsby-plugin-page-transitions";
-import Layout, { Background } from "../components/layout";
+import Layout from "../components/layout";
 import Seo from "../components/seo";
 import { colors } from "../styles/colors";
 

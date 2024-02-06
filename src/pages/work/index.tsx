@@ -24,21 +24,56 @@ const WorkPage = () => (
   >
     <Layout background="dark">
       <Wrapper>
+        <Description>{`타이틀을 클릭하시면, 해당 프로젝트 링크가 열립니다.
+        If you click on the title, the link to the project will open.`}</Description>
         <Content>
           <LinkTitle
-            to="https://tossplace.com/detail"
+            to="https://onscreensports.com"
             rel="noopener noreferrer"
             target="_blank"
             data-tip
-            data-for="tridge"
+            data-for="on screen sports"
+          >
+            On Screen Sports
+          </LinkTitle>
+          <Period>2023.10 ~ 2023.11</Period>
+          <Description>
+            {`골프존 캐나다에서 새롭게 리브랜딩 하면서 웹사이트 전면 리뉴얼 작업을 진행하였습니다.
+            기존 워드프레스 기반의 웹사이트를 React 기반으로 리뉴얼하며 속도 및 퍼포먼스 개선하였습니다. (Lighthouse Performance 73점 -> 99점 개선)\n
+            A static website for Golfzon North which is rebranded to On Screen Sports.
+            Improved the performance of the website by replacing Wordpress with React. (Lighthouse Performance metrics 73points -> 99points)
+            `}
+          </Description>
+          <ImageGrid>
+            <StaticImage
+              src="../../images/on-screen-sports-1.png"
+              alt="on-screen-sports"
+            />
+            <StaticImage
+              src="../../images/on-screen-sports-2.png"
+              alt="on-screen-sports"
+            />
+          </ImageGrid>
+        </Content>
+        <Content>
+          <LinkTitle
+            to="https://tossplace.com/product/pos"
+            rel="noopener noreferrer"
+            target="_blank"
+            data-tip
+            data-for="toss pos"
           >
             Toss POS
           </LinkTitle>
-          <Period>2022.06 ~ Present</Period>
+          <Period>2022.06 ~ 2023.07</Period>
           <Description>
-            {`현재는 토스에서 새롭게 진출하는 오프라인 결제 시장에 편리한 운영 경험을 제공하는 POS 소프트웨어를 개발하고 있습니다.
-            Electron, React 등 웹기술을 이용하여 POS를 개발 중이며, 올 상반기에 정식 런칭 예정입니다.\n
-            Currently developing POS system for better experience in the offline stores, with web technologies such as Electron, React etc.
+            {`토스에서 새롭게 진출한 오프라인 결제 시장에 편리한 운영 경험을 제공하는 POS 소프트웨어를 Electron, React 등 웹기술을 이용하여 POS를 개발하였습니다.
+            프린터 및 영수증 설정, 상품 및 할인 등록/관리, 매출리포트, 공지사항 등 포스 내 필수 기능 작업을 하였으며,
+            동시에 원격으로 접속하여 설정 및 등록하거나 매출 확인 등을 할 수 있도록 별도의 대리점용/사장님용 웹사이트 작업도 함께 진행하였습니다.
+            또한 대리점 없이 사장님들이 직가입할 수 있는 플로우를 아이디어 단계부터 함께 참여하여 작업, A/B 테스트 진행를 진행하며 꾸준히 개선하였습니다.\n
+            Built POS system with web technologies such as Electron, React etc. for better experience in the offline stores.
+            Implemented required features such as settings of printer & receipt, management of products & discounts and sales reports etc. for both POS & remote website.
+            Worked together from the ideation stage and conducted A/B testing to continuously improve the flow that allows the users to sign up directly without an agency.        
             `}
           </Description>
           <div style={{ marginTop: "2vh" }}>
@@ -204,10 +239,10 @@ const LinkTitle = styled(Link)`
   font-size: 5vw;
   color: ${colors.light};
   text-decoration: none;
+  transition: all 0.3s;
 
   &:hover {
     font-style: italic;
-    transition: all 0.5s;
   }
 
   @media (max-width: 767px) {
